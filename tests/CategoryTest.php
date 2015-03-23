@@ -14,6 +14,11 @@
     class CategoryTest extends PHPUnit_Framework_TestCase
     {
 
+        protected function tearDown(){
+            Task::deleteAll();
+            Category::deleteAll();
+        }
+
         function testSetId()
         {
             //Arrange
@@ -41,7 +46,8 @@
             $this->assertEquals(2, $result);
         }
 
-        function testGetName(){
+        function testGetName()
+        {
             //Arrange
             $id = 1;
             $name = "Homework";
@@ -67,8 +73,61 @@
             $this->assertEquals("goodbye", $result);
         }
 
+        function testSave()
+        {
+            //ARRANGE
+            $id = 1;
+            $name = "HOUSEHOLD";
+            $test_cat = new Category($id, $name);
 
+            //ACT
+            $test_cat->save();
 
+            //ASSERT
+            $result = Category::getAll();
+            $this->assertEquals($test_cat, $result[0]);
+        }
+
+        function testGetAll(){
+            //ARRANGE
+            $id = 1;
+            $name1 = "HOMEWORK";
+            $category1 = new Category($id, $name1);
+            $category1->save();
+
+            $id2 = 2;
+            $name2 = "Go home";
+            $category2 = new Category($id, $name2);
+            $category2->save();
+
+            //ACT
+            $result = Category::getAll();
+
+            //ASSERT
+            $this->assertEquals([$category1, $category2], $result);
+
+        }
+
+        function testDeleteAll()
+        {
+            //Arrange
+            $name = "Delete cats";
+            $id = 1;
+            $test_cat = new Category($id, $name);
+            $test_cat->save();
+
+            $name2 = "We will get to add cats";
+            $id2 = 2;
+            $test_cat2 = new Category($id2, $name2);
+            $test_cat2->save();
+
+            //Act
+            Category::deleteAll();
+
+            //Assert
+            $result = Category::getAll();
+            $this->assertEquals([], $result);
+        }
 
 
 
