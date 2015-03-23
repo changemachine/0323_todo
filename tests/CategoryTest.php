@@ -168,11 +168,6 @@
             $this->assertEquals([$cat2], Category::getAll());
         }
 
-        /*
-
-
-        */
-
         function testUpdate()
         {
             //ARRANGE
