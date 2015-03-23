@@ -52,6 +52,22 @@
             $GLOBALS['DB']->exec("DELETE FROM categories *;");
         }
 
+        static function find ($search_id)
+        {
+            $found_category = null;
+            $categories = Category::getAll();
+            foreach ($categories as $category)
+            {
+                $category_id = $category->getId();
+                if($category_id == $search_id)
+                {
+                    $found_category = $category;
+                }
+            }
+
+             return $found_category;
+        }
+
 
         //GET ALL, DELETE-ALL
 

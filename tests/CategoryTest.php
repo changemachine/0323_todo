@@ -129,7 +129,26 @@
             $this->assertEquals([], $result);
         }
 
+        function testFind(){
+            //Arrange
+            $id = 1;
+            $name = "Groceries";
+            $test_cat = new Category($id, $name);
+            $test_cat->save();
 
+            $id2 = 3;
+            $name2 = "Not Groceries";
+            $test_cat2 = new Category($id2, $name2);
+            $test_cat2->save();
+
+            //Act
+
+            $result = Category::find($test_cat2->getId());
+
+            //Assert
+            $this->assertEquals($test_cat2, $result);
+
+        }
 
     }
 ?>
