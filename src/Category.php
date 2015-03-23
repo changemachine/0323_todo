@@ -28,7 +28,8 @@
         }
 
 
-        //SAVE
+        //SAVE, GET ALL, DELETE-ALL
+
         function save(){
             $statement = $GLOBALS['DB']->query("INSERT INTO categories (name) VALUES ('{$this->getName()}') RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -52,6 +53,8 @@
             $GLOBALS['DB']->exec("DELETE FROM categories *;");
         }
 
+        //SEARCH & DELETE BY CATEGORY
+
         static function find ($search_id)
         {
             $found_category = null;
@@ -68,14 +71,17 @@
              return $found_category;
         }
 
-
-        //GET ALL, DELETE-ALL
-
-
-        //SEARCH & DELETE BY CATEGORY
+        //DELETE CATEGORY
 
 
-        //UPDATE, DELETE TASK
+
+        //UPDATE
+        function update($new_name){
+            $GLOBALS['DB']->exec("UPDATE categories SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
+        }
+
+        
 
 
 

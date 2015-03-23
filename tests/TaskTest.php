@@ -155,6 +155,21 @@
                 //Assert
                 $this->assertEquals($test_task, $result);
             }
+
+            function testUpdate()
+            {
+                //ARRANGE
+                $description = "this is new";
+                $id = 1;
+                $test_task = new Task($id, $description);
+                $test_task->save();
+                $new_description = "THIS is new";
+
+                //ACT
+                $test_task->update($new_description);
+                //ASSERT
+                $this->assertEquals("THIS is new", $test_task->getDescription());
+            }
     }
 
 ?>

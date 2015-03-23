@@ -147,7 +147,21 @@
 
             //Assert
             $this->assertEquals($test_cat2, $result);
+        }
 
+        function testUpdate()
+        {
+            //ARRANGE
+            $name = "this is new";
+            $id = 1;
+            $test_category = new Category($id, $name);
+            $test_category->save();
+            $new_name = "THIS is new";
+
+            //ACT
+            $test_category->update($new_name);
+            //ASSERT
+            $this->assertEquals("THIS is new", $test_category->getName());
         }
 
     }
