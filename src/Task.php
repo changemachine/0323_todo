@@ -66,7 +66,12 @@
 
         }
 
-        //UPDATE, DELETE TASK
+        function deleteTask()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM tasks WHERE id = {$this->getId()};");
+        }
+
+        //UPDATE
 
         function update($new_description)
         {

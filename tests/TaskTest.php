@@ -170,6 +170,27 @@
                 //ASSERT
                 $this->assertEquals("THIS is new", $test_task->getDescription());
             }
+
+            function testDeleteTask()
+           {
+               //Arrange
+               $id = 2;
+               $description = "Wash the dog";
+               $task = new Task($id, $description);
+               $task->save();
+
+               $id2 = 3;
+               $description2 = "Water the lawn";
+               $task2 = new Task($id2, $description2);
+               $task2->save();
+
+
+               //Act
+               $task->deleteTask();
+
+               //Assert
+               $this->assertEquals([$task2], Task::getAll());
+           }
     }
 
 ?>

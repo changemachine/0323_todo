@@ -73,7 +73,9 @@
 
         //DELETE CATEGORY
 
-
+        function deleteCategory(){
+            $GLOBALS['DB']->exec("DELETE FROM categories WHERE id = {$this->getId()};");
+        }
 
         //UPDATE
         function update($new_name){
@@ -81,7 +83,7 @@
             $this->setName($new_name);
         }
 
-        
+
 
 
 

@@ -149,6 +149,30 @@
             $this->assertEquals($test_cat2, $result);
         }
 
+        function testDeleteCategory(){
+            //ARRANGE
+            $id = 1;
+            $name = "Worky Bizness";
+            $cat1 = new Category($id, $name);
+            $cat1->save();
+
+            $id2 = 2;
+            $name2 = "Monkey Bizness";
+            $cat2 =  new Category($id2, $name2);
+            $cat2->save();
+
+            //ACT
+            $cat1->deleteCategory();
+
+            //ASSERT
+            $this->assertEquals([$cat2], Category::getAll());
+        }
+
+        /*
+
+
+        */
+
         function testUpdate()
         {
             //ARRANGE
